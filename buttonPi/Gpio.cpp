@@ -8,11 +8,18 @@ Gpio::Gpio(int gpioNum)
 	std::ofstream f(this->EXPORT_PATH, std::ios::trunc);
 	f << std::to_string(gpioNum);
 	f.close();
+
+	this->listeningThread = std::thread(&Gpio::startThread, this);
 }
 
+void Gpio::startThread()
+{
+
+}
 
 Gpio::~Gpio()
 {
+	this->listeningThread.join();
 	std::ofstream f(this->UNEXPORT_PATH, std::ios::trunc);
 	f << std::to_string(this->gpioNum);
 	f.close();
@@ -40,4 +47,14 @@ int Gpio::getValue()
 	f.close();
 
 	return value;
+}
+
+Gpio Gpio::getInstance(int gpioNumber)
+{
+	if (Gpio::gpios.count(gpioNumber) == 0) {
+		Gpio gpio(gpioNumber);
+		Gpio::gpios.insert(std::map<int, Gpio>::value_type(gpioNumber, gpio));
+	}
+
+	return Gpio::gpios.at(gpioNumber);
 }
