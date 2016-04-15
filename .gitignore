@@ -66,6 +66,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+buttonPi.VC.opendb
 
 # Chutzpah Test files
 _Chutzpah*
