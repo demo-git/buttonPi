@@ -14,9 +14,9 @@ ButtonPower::~ButtonPower()
 void ButtonPower::update(int value)
 {
 	if (value) {
-		//this->notifyAll(2);
+		this->notify(2);
 	}
 	else {
-		//this->notifyAll(-1);
+		this->notify(-1);
 	}
 }
