@@ -12,16 +12,27 @@ ButtonLight::~ButtonLight()
 
 void ButtonLight::update(int value)
 {
-	if (this->state) {
-		if (this->leds.size() > this->numLed + 1) {
-			this->leds.at(this->numLed).turnOff();
-			this->numLed = 0;
-			this->leds.at(this->numLed).turnOn();
-		}
-		else {
-			this->leds.at(this->numLed).turnOff();
-			this->numLed++;
-			this->leds.at(this->numLed).turnOn();
+	if(value == -1) {
+		this->off();
+		this->leds.at(this->numLed).turnOff();
+		this->numLed = 0;
+	}
+	else if (value == 2) {
+		this->on();
+		this->leds.at(this->numLed).turnOn();
+	}
+	else {
+		if (this->state) {
+			if (this->leds.size() > this->numLed + 1) {
+				this->leds.at(this->numLed).turnOff();
+				this->numLed = 0;
+				this->leds.at(this->numLed).turnOn();
+			}
+			else {
+				this->leds.at(this->numLed).turnOff();
+				this->numLed++;
+				this->leds.at(this->numLed).turnOn();
+			}
 		}
 	}
 }
