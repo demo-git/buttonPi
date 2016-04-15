@@ -1,18 +1,12 @@
 #pragma once
 
-#include "Gpio.h"
-#include <list>
 #include "Led.h"
+#include <vector>
+#include "IObserver.h"
 
-class Button
+class Button : public IObserver
 {
-protected:
-	Gpio *gpio;
-	std::list<Led> leds;
 public:
-	Button(Gpio gpio);
-	~Button();
-	void addLed(Led led);
-	void update(int value);
+	virtual ~Button();
 };
 
