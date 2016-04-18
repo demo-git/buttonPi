@@ -152,6 +152,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLight.h" />
     <ClInclude Include="ButtonPower.h" />
+    <ClInclude Include="ButtonStop.h" />
     <ClInclude Include="Gpio.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="Led.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="ButtonLight.cpp" />
     <ClCompile Include="buttonPi.cpp" />
     <ClCompile Include="ButtonPower.cpp" />
+    <ClCompile Include="ButtonStop.cpp" />
     <ClCompile Include="Gpio.cpp" />
     <ClCompile Include="IObserver.cpp" />
     <ClCompile Include="Led.cpp" />

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Led.h"
-#include <vector>
+#include "Gpio.h"
 #include "IObserver.h"
 
 class Button : public IObserver
@@ -9,7 +8,7 @@ class Button : public IObserver
 protected:
 	Gpio *gpio;
 public:
-	virtual Button(int gpioNumber);
+	Button(int gpioNumber);
 	virtual ~Button();
 };
 
