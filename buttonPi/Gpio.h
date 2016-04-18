@@ -10,7 +10,7 @@
 class Gpio : public Observable
 {
 protected:
-	static std::map<int, Gpio> gpios;
+	static std::map<int, Gpio*> gpios;
 	
 	const std::string EXPORT_PATH = "/sys/class/gpio/export";
 	const std::string UNEXPORT_PATH = "/sys/class/gpio/unexport";
@@ -19,7 +19,8 @@ protected:
 	std::string directionPath;
 	std::string valuePath;
 
-	std::atomic<bool> shouldStop = false;
+	std::atomic<bool> shouldStop;
+
 	bool listening;
 	int gpioNum;
 

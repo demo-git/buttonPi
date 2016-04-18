@@ -1,8 +1,11 @@
 #include "Gpio.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <cstring>
 
-Gpio::Gpio(int gpioNum, bool shouldListen)
+std::map<int, Gpio*> Gpio::gpios;
+
+Gpio::Gpio(int gpioNum, bool shouldListen) : listeningThread()
 {
 	this->directionPath = "/sys/class/gpio/gpio" + std::to_string(gpioNum) + "/direction";
 	this->valuePath = "/sys/class/gpio/gpio" + std::to_string(gpioNum) + "/value";
@@ -12,6 +15,7 @@ Gpio::Gpio(int gpioNum, bool shouldListen)
 	f << gpioNum;
 	f.close();
 
+	this->shouldStop = false;
 	this->setDirection(shouldListen);
 	this->listening = shouldListen;
 	if (shouldListen) {
@@ -28,7 +32,7 @@ void Gpio::startThread()
 
 
 	if ((fd = open(this->valuePath.c_str(), O_RDONLY)) < 0) {
-		perror("Could not open " + this->valuePath);
+		perror(std::string("Could not open " + this->valuePath).c_str());
 		exit(EXIT_FAILURE);
 	}
 
@@ -106,9 +110,8 @@ int Gpio::getValue()
 Gpio* Gpio::getInstance(int gpioNumber, bool shouldListen)
 {
 	if (Gpio::gpios.count(gpioNumber) == 0) {
-		Gpio gpio(gpioNumber, shouldListen);
-		Gpio::gpios.insert(std::map<int, Gpio>::value_type(gpioNumber, gpio));
+		Gpio::gpios[gpioNumber] = new Gpio(gpioNumber, shouldListen);
 	}
 
-	return &Gpio::gpios.at(gpioNumber);
+	return Gpio::gpios.at(gpioNumber);
 }
