@@ -1,6 +1,6 @@
 #include "ButtonLight.h"
 
-ButtonLight::ButtonLight()
+ButtonLight::ButtonLight(int gpioNumber) : Button::Button(gpioNumber)
 {
 	this->numLed = 0;
 }

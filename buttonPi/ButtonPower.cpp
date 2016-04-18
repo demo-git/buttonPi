@@ -2,7 +2,7 @@
 
 
 
-ButtonPower::ButtonPower()
+ButtonPower::ButtonPower(int gpioNumber) : Button::Button(gpioNumber)
 {
 }
 

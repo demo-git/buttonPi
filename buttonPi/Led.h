@@ -7,7 +7,7 @@ class Led
 protected:
 	Gpio *gpio;
 public:
-	Led(Gpio gpio);
+	Led(int gpioNumber);
 	~Led();
 	void turnOn();
 	void turnOff();

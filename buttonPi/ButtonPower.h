@@ -7,7 +7,7 @@
 class ButtonPower : public Button, public Observable
 {
 public:
-	ButtonPower();
+	ButtonPower(int gpioNumber);
 	~ButtonPower();
 	void update(int value);
 };

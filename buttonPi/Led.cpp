@@ -2,9 +2,9 @@
 
 
 
-Led::Led(Gpio gpio)
+Led::Led(int gpioNumber)
 {
-	this->gpio = &gpio;
+	this->gpio = Gpio::getInstance(gpioNumber, false);
 }
 
 

@@ -8,11 +8,12 @@
 class ButtonLight : public Button, public Power
 {
 protected:
-	int numLed;
+	int numLed = 0;
 	std::vector<Led> leds;
 public:
-	ButtonLight();
+	ButtonLight(int gpioNumber);
 	~ButtonLight();
+
 	void update(int value);
 	void addLed(Led led);
 };

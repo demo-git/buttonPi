@@ -6,7 +6,10 @@
 
 class Button : public IObserver
 {
+protected:
+	Gpio *gpio;
 public:
+	virtual Button(int gpioNumber);
 	virtual ~Button();
 };
 

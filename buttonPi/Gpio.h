@@ -5,6 +5,7 @@
 #include <map>
 #include "Observable.h"
 #include <thread>
+#include <atomic>
 
 class Gpio : public Observable
 {
@@ -17,13 +18,17 @@ protected:
 	std::thread listeningThread;
 	std::string directionPath;
 	std::string valuePath;
+
+	std::atomic<bool> shouldStop = false;
+	bool listening;
 	int gpioNum;
 
-	Gpio(int gpioNum);
+	Gpio(int gpioNum, bool shouldListen);
 
 	void startThread();
+	void startThread2();
 public:
-	static Gpio getInstance(int gpioNumber);
+	static Gpio* getInstance(int gpioNumber, bool shouldListen);
 	
 	~Gpio();
 
