@@ -30,8 +30,9 @@ protected:
 	void startThread2();
 public:
 	static Gpio* getInstance(int gpioNumber, bool shouldListen);
-	
+
 	~Gpio();
+	static void clean();
 
 	void setDirection(bool isIn);
 	void setValue(int value);

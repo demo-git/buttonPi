@@ -115,3 +115,11 @@ Gpio* Gpio::getInstance(int gpioNumber, bool shouldListen)
 
 	return Gpio::gpios.at(gpioNumber);
 }
+
+void Gpio::clean() {
+	for (std::map<int, Gpio*>::iterator iterator = Gpio::gpios.begin(); iterator != Gpio::gpios.end(); iterator++) {
+		delete iterator->second;
+	}
+}
+
+

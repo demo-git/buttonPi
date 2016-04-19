@@ -5,7 +5,7 @@
 #include "Button.h"
 #include "Power.h"
 
-class ButtonLight : public Button, public Power
+class ButtonLight : public Button, public Power, public IObserver
 {
 protected:
 	int numLed = 0;

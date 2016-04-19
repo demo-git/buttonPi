@@ -3,7 +3,7 @@
 #include "Gpio.h"
 #include "IObserver.h"
 
-class Button : public IObserver
+class Button
 {
 protected:
 	Gpio *gpio;

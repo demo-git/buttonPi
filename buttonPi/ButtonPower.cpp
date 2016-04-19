@@ -4,11 +4,13 @@
 
 ButtonPower::ButtonPower(int gpioNumber) : Button::Button(gpioNumber)
 {
+	this->gpio->addObserver(this);
 }
 
 
 ButtonPower::~ButtonPower()
 {
+	this->gpio->removeObserver(this);
 }
 
 void ButtonPower::update(int value)

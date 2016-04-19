@@ -3,7 +3,7 @@
 #include "Button.h"
 #include "Power.h"
 
-class ButtonPower : public Button, public Observable
+class ButtonPower : public Button, public Observable, public IObserver
 {
 public:
 	ButtonPower(int gpioNumber);
